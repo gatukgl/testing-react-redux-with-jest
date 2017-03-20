@@ -5,14 +5,20 @@ import TodoItem from '../TodoItem'
 
 // shallow rendered testing
 describe('TodoItem', () => {
+  let component
+  beforeEach(() => {
+    // render TodoItem with text
+    component = shallow(<TodoItem text="Drink coffee" />)
+  })
+
   it('renders correct structure', () => {
-    // render TodoItem with Hello text
-    const component = shallow(<TodoItem text="Hello" />)
     // component.is() come from "ENZYME"
     expect(component.is('li')).toBe(true) // have <li> ???
   })
+
   it('has complete class if receiving complete prop', () => {
-    const component = shallow(<TodoItem text="Hello" complete />)
+    // to override component's props
+    component.setProps({ complete: true })
     // component.hasClass() come from "ENZYME"
     expect(component.hasClass('complete')).toBe(true)
   })
